@@ -2,6 +2,7 @@ node_modules/
 dist/
 .audit/
 .vercel/
+.env*
 *.log
 *.tsbuildinfo
 .DS_Store
