@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.audit/
+.vercel/
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
