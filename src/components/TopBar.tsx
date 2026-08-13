@@ -17,7 +17,7 @@ export default function TopBar({ onAbout, onProjects }: TopBarProps) {
   return (
     <header className="topbar">
       <div className="topbar-left">
-        <button className="brand" onClick={onAbout}>Mason James</button>
+        <button className="brand" onClick={onAbout}>Masen James</button>
         <nav className="top-links" aria-label="Primary">
           <button onClick={onAbout}>About</button>
           <button onClick={onProjects}>Projects</button>

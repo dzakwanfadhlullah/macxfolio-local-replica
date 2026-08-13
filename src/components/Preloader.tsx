@@ -25,7 +25,10 @@ export default function Preloader({ onDone }: PreloaderProps) {
       setLeaving(true)
       if (!curtain.current) return
       gsap.to(curtain.current, {
-        clipPath: "inset(0% 0% 99.75% 0%)",
+        height: 2,
+        top: "auto",
+        bottom: 0,
+        borderRadius: "50%",
         duration: 0.6,
         ease: "power4.inOut",
         onComplete: onDone,
@@ -47,14 +50,14 @@ export default function Preloader({ onDone }: PreloaderProps) {
           strokeLinecap="round"
           initial={reduceMotion ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: reduceMotion ? 0 : 0.8, ease: "easeInOut", opacity: { duration: 0.4 } }}
+          transition={{ duration: reduceMotion ? 0 : 0.56, ease: "easeInOut", opacity: { duration: 0.28 } }}
         />
         <motion.path
           d={longPath}
           strokeLinecap="round"
           initial={reduceMotion ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: reduceMotion ? 0 : 2.8, delay: reduceMotion ? 0 : 0.7, ease: "easeInOut", opacity: { duration: 0.7, delay: reduceMotion ? 0 : 0.7 } }}
+          transition={{ duration: reduceMotion ? 0 : 1.96, delay: reduceMotion ? 0 : 0.49, ease: "easeInOut", opacity: { duration: 0.49, delay: reduceMotion ? 0 : 0.49 } }}
         />
       </svg>
     </div>

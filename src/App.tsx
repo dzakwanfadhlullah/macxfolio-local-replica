@@ -6,7 +6,7 @@ import FloatingIcon from "./components/FloatingIcon"
 import NekoCat from "./components/NekoCat"
 import Preloader from "./components/Preloader"
 import TopBar from "./components/TopBar"
-import { desktopItems, projects, type Project, type WindowKind } from "./data"
+import { desktopItems, mobileItemIds, projects, type Project, type WindowKind } from "./data"
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -15,7 +15,7 @@ export default function App() {
   const [nextId, setNextId] = useState(1)
 
   const finishLoading = useCallback(() => setLoading(false), [])
-  const mobileItems = useMemo(() => desktopItems.filter((item) => item.mobile).slice(0, 12), [])
+  const mobileItems = useMemo(() => mobileItemIds.map((id) => desktopItems.find((item) => item.id === id)!), [])
 
   const openWindow = useCallback((kind: WindowKind, project?: Project) => {
     setWindows((current) => {
@@ -64,7 +64,7 @@ export default function App() {
 
   return (
     <main className="desktop-shell">
-      <TopBar onAbout={() => openWindow("about")} onProjects={() => openWindow("projects")} />
+      <TopBar onAbout={() => openWindow("about")} onProjects={() => openWindow("projects", projects[0])} />
 
       <section className="desktop-stage" aria-label="Interactive portfolio desktop">
         <div className="desktop-layout">
@@ -82,7 +82,7 @@ export default function App() {
         </div>
       </section>
 
-      <div className="dock-wrap"><Dock onOpen={(kind) => openWindow(kind)} /></div>
+      <div className="dock-wrap"><Dock onOpen={(kind) => openWindow(kind, kind === "projects" ? projects[0] : undefined)} /></div>
 
       <AnimatePresence>
         {windows.map((instance, index) => (

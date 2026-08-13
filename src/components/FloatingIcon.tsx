@@ -17,8 +17,7 @@ export default function FloatingIcon({ item, mobile = false, onActivate }: Float
   return (
     <motion.button
       className={`desktop-item ${mobile ? "desktop-item-mobile" : item.className}`}
-      onClick={mobile ? handleActivate : undefined}
-      onDoubleClick={handleActivate}
+      onClick={handleActivate}
       onKeyDown={(event) => {
         if (event.key === "Enter" || event.key === " ") handleActivate()
       }}
@@ -28,10 +27,10 @@ export default function FloatingIcon({ item, mobile = false, onActivate }: Float
       initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={reduceMotion ? { duration: 0 } : { delay: 3.6, type: "spring", stiffness: 300, damping: 100, mass: 0.1 }}
-      aria-label={`${item.label}. Double click to open.`}
+      aria-label={`${item.label}. Click to open.`}
     >
       <motion.span className="desktop-icon-frame" whileHover={mobile ? undefined : { y: -2 }} transition={{ type: "spring", stiffness: 400, damping: 100, mass: 7.6 }}>
-        <img src={item.image} alt="" draggable={false} />
+        <img src={mobile && item.mobileImage ? item.mobileImage : item.image} alt="" draggable={false} />
       </motion.span>
       <span className="desktop-icon-label">{item.label}</span>
     </motion.button>
